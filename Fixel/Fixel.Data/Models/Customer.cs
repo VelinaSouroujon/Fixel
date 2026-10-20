@@ -5,6 +5,7 @@ using static Fixel.Common.Constants.CustomerConstants;
 namespace Fixel.Data.Models
 {
     [Index(nameof(Email), IsUnique = true)]
+    [Index(nameof(PhoneNumber))]
     public class Customer
     {
         [Key]

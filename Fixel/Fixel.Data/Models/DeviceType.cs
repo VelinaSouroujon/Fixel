@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using Microsoft.EntityFrameworkCore;
 using static Fixel.Common.Constants.DeviceTypeConstants;
 
 namespace Fixel.Data.Models
 {
+    [Index(nameof(TypeName), IsUnique = true)]
     public class DeviceType
     {
         [Key]
@@ -13,6 +14,6 @@ namespace Fixel.Data.Models
         [MaxLength(TypeNameMaxLength)]
         public string TypeName { get; set; } = null!;
 
-        public ICollection<Device> Devices { get; set; } = new List<Device>();
+        public ICollection<DeviceModel> DeviceModels { get; set; } = new List<DeviceModel>();
     }
 }

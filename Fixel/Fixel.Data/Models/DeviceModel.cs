@@ -5,6 +5,7 @@ using static Fixel.Common.Constants.DeviceModelConstants;
 
 namespace Fixel.Data.Models
 {
+    [Index(nameof(ManufacturerId), nameof(Name), IsUnique = true)]
     public class DeviceModel
     {
         [Key]
@@ -13,6 +14,13 @@ namespace Fixel.Data.Models
         [Required]
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
+
+        [Required]
+        public int DeviceTypeId { get; set; }
+
+        [ForeignKey(nameof(DeviceTypeId))]
+        [DeleteBehavior(DeleteBehavior.Restrict)]
+        public DeviceType DeviceType { get; set; } = null!;
 
         [Required]
         public int ManufacturerId { get; set; }

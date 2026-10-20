@@ -12,13 +12,6 @@ namespace Fixel.Data.Models
         public int Id { get; set; }
 
         [Required]
-        public int DeviceTypeId { get; set; }
-
-        [ForeignKey(nameof(DeviceTypeId))]
-        [DeleteBehavior(DeleteBehavior.Restrict)]
-        public DeviceType DeviceType { get; set; } = null!;
-
-        [Required]
         public int ModelId { get; set; }
 
         [ForeignKey(nameof(ModelId))]

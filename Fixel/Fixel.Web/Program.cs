@@ -15,7 +15,7 @@ namespace Fixel.Web
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") 
-                                     ?? throw new InvalidOperationException("Connection string 'DefaultConnection not found'"));
+                                     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found"));
             });
 
             var app = builder.Build();
