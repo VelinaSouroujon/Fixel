@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Fixel.Common\Fixel.Common.csproj" />
+    <ProjectReference Include="..\Fixel.Core\Fixel.Core.csproj" />
+  </ItemGroup>
+
 </Project>

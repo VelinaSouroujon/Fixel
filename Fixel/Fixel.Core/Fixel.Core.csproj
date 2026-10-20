@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Fixel.Common\Fixel.Common.csproj" />
+    <ProjectReference Include="..\Fixel.Data\Fixel.Data.csproj" />
+  </ItemGroup>
+
 </Project>

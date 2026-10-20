@@ -1,3 +1,6 @@
+using Fixel.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Fixel.Web
 {
     public class Program
@@ -8,6 +11,12 @@ namespace Fixel.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") 
+                                     ?? throw new InvalidOperationException("Connection string 'DefaultConnection not found'"));
+            });
 
             var app = builder.Build();
 
