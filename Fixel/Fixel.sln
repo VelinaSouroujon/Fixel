@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37614.0 d17.14
+VisualStudioVersion = 17.14.37614.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fixel.Web", "Fixel.Web\Fixel.Web.csproj", "{5D2CDF3A-6ABC-4515-AF42-499424DDF793}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fixel.Common", "Fixel.Common\Fixel.Common.csproj", "{1457F69A-001A-4327-BB2B-3A52DFD9527C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fixel.Core", "Fixel.Core\Fixel.Core.csproj", "{D56857EB-9161-40EE-B1F5-5B082348A9D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fixel.ViewModels", "Fixel.ViewModels\Fixel.ViewModels.csproj", "{11F8413D-C6FA-46D5-8A74-FE8244781232}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D56857EB-9161-40EE-B1F5-5B082348A9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D56857EB-9161-40EE-B1F5-5B082348A9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D56857EB-9161-40EE-B1F5-5B082348A9D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F8413D-C6FA-46D5-8A74-FE8244781232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F8413D-C6FA-46D5-8A74-FE8244781232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F8413D-C6FA-46D5-8A74-FE8244781232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F8413D-C6FA-46D5-8A74-FE8244781232}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
