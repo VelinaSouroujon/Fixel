@@ -25,12 +25,12 @@ namespace Fixel.Data.Models
         public string ReportedProblem { get; set; } = null!;
 
         [Required]
-        public Priority Priority { get; set; }
+        public RepairPriority Priority { get; set; }
 
         public DateOnly? ExpectedCompletionDate { get; set; }
 
         [Required]
-        public Status Status { get; set; }
+        public RepairStatus Status { get; set; }
 
         public int DeviceId { get; set; }
 
@@ -39,7 +39,7 @@ namespace Fixel.Data.Models
         public Device Device { get; set; } = null!;
     }
 
-    public enum Priority
+    public enum RepairPriority
     {
         Low = 1,
         Normal = 2,
@@ -47,7 +47,7 @@ namespace Fixel.Data.Models
         Urgent = 4
     }
 
-    public enum Status
+    public enum RepairStatus
     {
         Received = 1,
         Diagnosing = 2,
