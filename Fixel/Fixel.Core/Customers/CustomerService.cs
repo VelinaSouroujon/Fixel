@@ -1,5 +1,8 @@
-﻿using Fixel.Data;
+﻿using EntityFramework.Exceptions.Common;
+using Fixel.Core.Customers.Exceptions;
+using Fixel.Data;
 using Fixel.Data.Models;
+using Fixel.ViewModels.Customers.Create;
 using Fixel.ViewModels.Customers.Details;
 using Fixel.ViewModels.Customers.Index;
 using Microsoft.EntityFrameworkCore;
@@ -75,6 +78,36 @@ namespace Fixel.Core.Customers
                         .ToList()
                 })
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task CreateAsync(CreateCustomerFormModel model)
+        {
+            ArgumentNullException.ThrowIfNull(model);
+
+            Customer newCustomer = new Customer
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                Email = model.Email,
+                PreferredContactMethod = model.PreferredContactMethod
+            };
+
+            _context.Add(newCustomer);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (UniqueConstraintException ex)
+            {
+                if (ex.ConstraintProperties.Contains(nameof(Customer.Email)))
+                {
+                    throw new DuplicateEmailException("Email already exists", ex);
+                }
+
+                throw;
+            }
         }
     }
 }
