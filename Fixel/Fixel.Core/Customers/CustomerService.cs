@@ -128,7 +128,7 @@ namespace Fixel.Core.Customers
 
             Customer? customer = await _context.Customers.FindAsync(id);
 
-            if (customer == null)
+            if (customer is null)
             {
                 throw new CustomerNotFoundException();
             }
@@ -148,6 +148,19 @@ namespace Fixel.Core.Customers
                 ThrowIfDuplicateEmail(ex);
                 throw;
             }
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            Customer? customer = await _context.Customers.FindAsync(id);
+
+            if (customer is null)
+            {
+                throw new CustomerNotFoundException();
+            }
+
+            _context.Remove(customer);
+            await _context.SaveChangesAsync();
         }
 
         private static void ThrowIfDuplicateEmail(UniqueConstraintException ex)

@@ -15,5 +15,7 @@ namespace Fixel.Core.Customers
         Task<CustomerFormModel?> GetProfileInfoAsync(int id);
 
         Task UpdateAsync(int id, CustomerFormModel model);
+
+        Task DeleteAsync(int id);
     }
 }
