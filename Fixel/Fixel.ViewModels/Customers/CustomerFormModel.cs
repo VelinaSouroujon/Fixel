@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 using static Fixel.Common.Constants.CustomerConstants;
 
-namespace Fixel.ViewModels.Customers.Create
+namespace Fixel.ViewModels.Customers
 {
-    public class CreateCustomerFormModel
+    public class CustomerFormModel
     {
         [Required]
         [MinLength(FirstNameMinLength)]

@@ -1,6 +1,6 @@
 ﻿using Fixel.Core.Customers;
 using Fixel.Core.Customers.Exceptions;
-using Fixel.ViewModels.Customers.Create;
+using Fixel.ViewModels.Customers;
 using Fixel.ViewModels.Customers.Details;
 using Fixel.ViewModels.Customers.Index;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +44,7 @@ namespace Fixel.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateCustomerFormModel model)
+        public async Task<IActionResult> Create(CustomerFormModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -54,6 +54,44 @@ namespace Fixel.Web.Controllers
             try
             {
                 await _customerService.CreateAsync(model);
+            }
+            catch (DuplicateEmailException)
+            {
+                ModelState.AddModelError(nameof(model.Email), "Email address is already taken");
+                return View(model);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            CustomerFormModel? model = await _customerService.GetProfileInfoAsync(id);
+
+            if (model is null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, CustomerFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                await _customerService.UpdateAsync(id, model);
+            }
+            catch (CustomerNotFoundException)
+            {
+                return NotFound();
             }
             catch (DuplicateEmailException)
             {

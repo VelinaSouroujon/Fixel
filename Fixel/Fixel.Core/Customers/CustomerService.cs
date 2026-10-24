@@ -2,7 +2,7 @@
 using Fixel.Core.Customers.Exceptions;
 using Fixel.Data;
 using Fixel.Data.Models;
-using Fixel.ViewModels.Customers.Create;
+using Fixel.ViewModels.Customers;
 using Fixel.ViewModels.Customers.Details;
 using Fixel.ViewModels.Customers.Index;
 using Microsoft.EntityFrameworkCore;
@@ -80,7 +80,7 @@ namespace Fixel.Core.Customers
                 .FirstOrDefaultAsync();
         }
 
-        public async Task CreateAsync(CreateCustomerFormModel model)
+        public async Task CreateAsync(CustomerFormModel model)
         {
             ArgumentNullException.ThrowIfNull(model);
 
@@ -101,12 +101,60 @@ namespace Fixel.Core.Customers
             }
             catch (UniqueConstraintException ex)
             {
-                if (ex.ConstraintProperties.Contains(nameof(Customer.Email)))
-                {
-                    throw new DuplicateEmailException("Email already exists", ex);
-                }
-
+                ThrowIfDuplicateEmail(ex);
                 throw;
+            }
+        }
+
+        public async Task<CustomerFormModel?> GetProfileInfoAsync(int id)
+        {
+            return await _context.Customers
+                .AsNoTracking()
+                .Where(c => c.Id == id)
+                .Select(c => new CustomerFormModel
+                {
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    PhoneNumber = c.PhoneNumber,
+                    Email = c.Email,
+                    PreferredContactMethod = c.PreferredContactMethod
+                })
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task UpdateAsync(int id, CustomerFormModel model)
+        {
+            ArgumentNullException.ThrowIfNull(model);
+
+            Customer? customer = await _context.Customers.FindAsync(id);
+
+            if (customer == null)
+            {
+                throw new CustomerNotFoundException();
+            }
+
+            customer.FirstName = model.FirstName;
+            customer.LastName = model.LastName;
+            customer.PhoneNumber = model.PhoneNumber;
+            customer.Email = model.Email;
+            customer.PreferredContactMethod = model.PreferredContactMethod;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (UniqueConstraintException ex)
+            {
+                ThrowIfDuplicateEmail(ex);
+                throw;
+            }
+        }
+
+        private static void ThrowIfDuplicateEmail(UniqueConstraintException ex)
+        {
+            if (ex.ConstraintProperties.Contains(nameof(Customer.Email)))
+            {
+                throw new DuplicateEmailException("Email already exists", ex);
             }
         }
     }
