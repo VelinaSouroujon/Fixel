@@ -61,6 +61,96 @@ namespace Fixel.Data.Migrations
                     b.HasIndex("PhoneNumber");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "elena.markovic@example.com",
+                            FirstName = "Elena",
+                            LastName = "Marković",
+                            PhoneNumber = "+44 7700 900101",
+                            PreferredContactMethod = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "daniel.okafor@example.com",
+                            FirstName = "Daniel",
+                            LastName = "Okafor",
+                            PhoneNumber = "+44 7700 900102",
+                            PreferredContactMethod = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "sofia.lindqvist@example.com",
+                            FirstName = "Sofia",
+                            LastName = "Lindqvist",
+                            PhoneNumber = "+44 7700 900103",
+                            PreferredContactMethod = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FirstName = "Mateo",
+                            LastName = "Fernández",
+                            PhoneNumber = "+44 7700 900104",
+                            PreferredContactMethod = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Email = "aisha.rahman@example.com",
+                            FirstName = "Aisha",
+                            LastName = "Rahman",
+                            PhoneNumber = "+44 7700 900105",
+                            PreferredContactMethod = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Email = "thomas.becker@example.com",
+                            FirstName = "Thomas",
+                            LastName = "Becker",
+                            PhoneNumber = "+44 7700 900106",
+                            PreferredContactMethod = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Email = "nina.kowalska@example.com",
+                            FirstName = "Nina",
+                            LastName = "Kowalska",
+                            PhoneNumber = "+44 7700 900107",
+                            PreferredContactMethod = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            FirstName = "Lucas",
+                            LastName = "Moreau",
+                            PhoneNumber = "+44 7700 900108",
+                            PreferredContactMethod = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Email = "priya.nair@example.com",
+                            FirstName = "Priya",
+                            LastName = "Nair",
+                            PhoneNumber = "+44 7700 900109",
+                            PreferredContactMethod = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Email = "viktor.petrov@example.com",
+                            FirstName = "Viktor",
+                            LastName = "Petrov",
+                            PhoneNumber = "+44 7700 900110",
+                            PreferredContactMethod = 1
+                        });
                 });
 
             modelBuilder.Entity("Fixel.Data.Models.Device", b =>
@@ -92,6 +182,91 @@ namespace Fixel.Data.Migrations
                         .HasFilter("[SerialNumber] IS NOT NULL");
 
                     b.ToTable("Devices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomerId = 1,
+                            ModelId = 1,
+                            SerialNumber = "SN-2026-0001"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 2,
+                            ModelId = 2,
+                            SerialNumber = "SN-2026-0002"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomerId = 3,
+                            ModelId = 3,
+                            SerialNumber = "SN-2026-0003"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CustomerId = 4,
+                            ModelId = 4,
+                            SerialNumber = "SN-2026-0004"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CustomerId = 5,
+                            ModelId = 5,
+                            SerialNumber = "SN-2026-0005"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CustomerId = 6,
+                            ModelId = 6,
+                            SerialNumber = "SN-2026-0006"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CustomerId = 7,
+                            ModelId = 7,
+                            SerialNumber = "SN-2026-0007"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CustomerId = 8,
+                            ModelId = 8,
+                            SerialNumber = "SN-2026-0008"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CustomerId = 9,
+                            ModelId = 9,
+                            SerialNumber = "SN-2026-0009"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CustomerId = 10,
+                            ModelId = 10,
+                            SerialNumber = "SN-2026-0010"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CustomerId = 1,
+                            ModelId = 11
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CustomerId = 2,
+                            ModelId = 12,
+                            SerialNumber = "SN-2026-0012"
+                        });
                 });
 
             modelBuilder.Entity("Fixel.Data.Models.DeviceModel", b =>
@@ -121,6 +296,302 @@ namespace Fixel.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("DeviceModels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 1,
+                            Name = "iPhone 15"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 1,
+                            Name = "iPhone 14"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DeviceTypeId = 4,
+                            ManufacturerId = 1,
+                            Name = "iPad Air"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 1,
+                            Name = "MacBook Air M2"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 1,
+                            Name = "MacBook Pro 14"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DeviceTypeId = 2,
+                            ManufacturerId = 1,
+                            Name = "iMac 24"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DeviceTypeId = 6,
+                            ManufacturerId = 1,
+                            Name = "Apple Watch Series 9"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 2,
+                            Name = "Galaxy S23"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 2,
+                            Name = "Galaxy A54"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DeviceTypeId = 4,
+                            ManufacturerId = 2,
+                            Name = "Galaxy Tab S9"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 3,
+                            Name = "XPS 15"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 3,
+                            Name = "Latitude 5420"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DeviceTypeId = 2,
+                            ManufacturerId = 3,
+                            Name = "OptiPlex 7090"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 4,
+                            Name = "Pavilion 15"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 4,
+                            Name = "EliteBook 840"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DeviceTypeId = 2,
+                            ManufacturerId = 4,
+                            Name = "EliteDesk 800"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 5,
+                            Name = "ThinkPad T14"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 5,
+                            Name = "IdeaPad 3"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 5,
+                            Name = "Legion 5"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 6,
+                            Name = "ROG Strix G15"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 6,
+                            Name = "Zenbook 14"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 7,
+                            Name = "Aspire 5"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 7,
+                            Name = "Nitro 5"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 8,
+                            Name = "Katana 15"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            DeviceTypeId = 4,
+                            ManufacturerId = 9,
+                            Name = "Surface Pro 9"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            DeviceTypeId = 1,
+                            ManufacturerId = 9,
+                            Name = "Surface Laptop 5"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            DeviceTypeId = 5,
+                            ManufacturerId = 9,
+                            Name = "Xbox Series X"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            DeviceTypeId = 5,
+                            ManufacturerId = 9,
+                            Name = "Xbox Series S"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            DeviceTypeId = 5,
+                            ManufacturerId = 10,
+                            Name = "PlayStation 5"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            DeviceTypeId = 5,
+                            ManufacturerId = 10,
+                            Name = "PlayStation 4 Pro"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 10,
+                            Name = "Xperia 1 V"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            DeviceTypeId = 5,
+                            ManufacturerId = 11,
+                            Name = "Switch"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            DeviceTypeId = 5,
+                            ManufacturerId = 11,
+                            Name = "Switch OLED"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 12,
+                            Name = "Pixel 8"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 12,
+                            Name = "Pixel 7a"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 13,
+                            Name = "Redmi Note 12"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 13,
+                            Name = "Xiaomi 13"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 14,
+                            Name = "P30 Pro"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            DeviceTypeId = 4,
+                            ManufacturerId = 14,
+                            Name = "MatePad 11"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 15,
+                            Name = "Moto G54"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 15,
+                            Name = "Edge 40"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            DeviceTypeId = 3,
+                            ManufacturerId = 16,
+                            Name = "OnePlus 11"
+                        });
                 });
 
             modelBuilder.Entity("Fixel.Data.Models.DeviceType", b =>
@@ -142,6 +613,38 @@ namespace Fixel.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("DeviceTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            TypeName = "Laptop"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            TypeName = "Desktop"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            TypeName = "Phone"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            TypeName = "Tablet"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            TypeName = "Console"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            TypeName = "Other"
+                        });
                 });
 
             modelBuilder.Entity("Fixel.Data.Models.Manufacturer", b =>
@@ -163,6 +666,88 @@ namespace Fixel.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Manufacturers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Apple"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Samsung"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Dell"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "HP"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Lenovo"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "ASUS"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Acer"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "MSI"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Microsoft"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Sony"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Nintendo"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Google"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Xiaomi"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Huawei"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Motorola"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "OnePlus"
+                        });
                 });
 
             modelBuilder.Entity("Fixel.Data.Models.RepairTicket", b =>
@@ -210,6 +795,171 @@ namespace Fixel.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("RepairTickets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConditionDescription = "Light scuffs on the frame, screen intact.",
+                            DeviceId = 1,
+                            ExpectedCompletionDate = new DateOnly(2026, 7, 15),
+                            IntakeDate = new DateTime(2026, 7, 8, 10, 15, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 2,
+                            ReferenceNumber = "FF-2026-0001",
+                            ReportedProblem = "Battery drops below 80% health and the phone dies at 20%.",
+                            Status = 9
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConditionDescription = "Small dent on the top-left corner.",
+                            DeviceId = 2,
+                            ExpectedCompletionDate = new DateOnly(2026, 8, 18),
+                            IntakeDate = new DateTime(2026, 8, 11, 14, 40, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 2,
+                            ReferenceNumber = "FF-2026-0002",
+                            ReportedProblem = "Rear glass cracked after a fall from a table.",
+                            Status = 9
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ConditionDescription = "Pressure marks near one corner, no case.",
+                            DeviceId = 3,
+                            IntakeDate = new DateTime(2026, 9, 20, 9, 30, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 1,
+                            ReferenceNumber = "FF-2026-0003",
+                            ReportedProblem = "A dark patch is spreading from one corner of the screen.",
+                            Status = 10
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ConditionDescription = "Burn smell near the charging port, otherwise clean.",
+                            DeviceId = 4,
+                            IntakeDate = new DateTime(2026, 9, 28, 16, 5, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 4,
+                            ReferenceNumber = "FF-2026-0004",
+                            ReportedProblem = "Laptop does not power on after a power surge.",
+                            Status = 11
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ConditionDescription = "Dent on the bottom case corner, charger included.",
+                            DeviceId = 5,
+                            IntakeDate = new DateTime(2026, 9, 30, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 1,
+                            ReferenceNumber = "FF-2026-0005",
+                            ReportedProblem = "Slow start-up and frequent freezing during video calls.",
+                            Status = 12
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ConditionDescription = "Good condition, dust buildup around the vents.",
+                            DeviceId = 6,
+                            ExpectedCompletionDate = new DateOnly(2026, 10, 18),
+                            IntakeDate = new DateTime(2026, 10, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 3,
+                            ReferenceNumber = "FF-2026-0006",
+                            ReportedProblem = "Fan runs loudly and the computer shuts down under load.",
+                            Status = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ConditionDescription = "Scuffed bezel, strap worn at the clasp.",
+                            DeviceId = 7,
+                            ExpectedCompletionDate = new DateOnly(2026, 10, 15),
+                            IntakeDate = new DateTime(2026, 10, 2, 15, 10, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 2,
+                            ReferenceNumber = "FF-2026-0007",
+                            ReportedProblem = "Watch will not charge and the screen stays black.",
+                            Status = 8
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ConditionDescription = "Scratched back glass, otherwise good.",
+                            DeviceId = 8,
+                            ExpectedCompletionDate = new DateOnly(2026, 10, 26),
+                            IntakeDate = new DateTime(2026, 10, 7, 12, 25, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 2,
+                            ReferenceNumber = "FF-2026-0008",
+                            ReportedProblem = "Rear camera is blurry and rattles when the phone is shaken.",
+                            Status = 7
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ConditionDescription = "Clean screen, small scratch on the back near the camera.",
+                            DeviceId = 9,
+                            ExpectedCompletionDate = new DateOnly(2026, 11, 6),
+                            IntakeDate = new DateTime(2026, 10, 9, 9, 45, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 2,
+                            ReferenceNumber = "FF-2026-0009",
+                            ReportedProblem = "Charging port is loose and the phone only charges at certain angles.",
+                            Status = 5
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ConditionDescription = "Pressure marks near one corner, case missing.",
+                            DeviceId = 10,
+                            ExpectedCompletionDate = new DateOnly(2026, 10, 31),
+                            IntakeDate = new DateTime(2026, 10, 14, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 3,
+                            ReferenceNumber = "FF-2026-0010",
+                            ReportedProblem = "Display flickers and shows horizontal lines after waking from sleep.",
+                            Status = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ConditionDescription = "Minor scratches on the lid, no visible liquid damage.",
+                            DeviceId = 11,
+                            ExpectedCompletionDate = new DateOnly(2026, 10, 30),
+                            IntakeDate = new DateTime(2026, 10, 16, 10, 50, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 2,
+                            ReferenceNumber = "FF-2026-0011",
+                            ReportedProblem = "Keyboard keys stick and some letters do not register.",
+                            Status = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ConditionDescription = "Heavy wear, missing rubber feet.",
+                            DeviceId = 12,
+                            IntakeDate = new DateTime(2026, 10, 21, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 2,
+                            ReferenceNumber = "FF-2026-0012",
+                            ReportedProblem = "Battery drains within an hour and the laptop shuts down without warning.",
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ConditionDescription = "Cracked glass across the lower third, light scuffs on the frame.",
+                            DeviceId = 1,
+                            IntakeDate = new DateTime(2026, 10, 23, 9, 15, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 2,
+                            ReferenceNumber = "FF-2026-0013",
+                            ReportedProblem = "Screen cracked after a drop and touch is unresponsive in the lower half.",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ConditionDescription = "Light wear, small dent on the top-left corner.",
+                            DeviceId = 2,
+                            ExpectedCompletionDate = new DateOnly(2026, 11, 2),
+                            IntakeDate = new DateTime(2026, 10, 24, 11, 35, 0, 0, DateTimeKind.Unspecified),
+                            Priority = 1,
+                            ReferenceNumber = "FF-2026-0014",
+                            ReportedProblem = "Speaker sounds muffled and callers cannot be heard clearly.",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("Fixel.Data.Models.Device", b =>
