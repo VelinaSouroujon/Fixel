@@ -36,6 +36,6 @@ namespace Fixel.Data.Models
     {
         Phone = 1,
         Email = 2,
-        SMS = 3
+        Sms = 3
     }
 }

@@ -1,5 +1,4 @@
-﻿using Fixel.Data.Configurations;
-using Fixel.Data.Models;
+﻿using Fixel.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fixel.Data
@@ -28,7 +27,7 @@ namespace Fixel.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new RepairTicketConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
     }
 }

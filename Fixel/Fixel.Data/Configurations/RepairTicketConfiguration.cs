@@ -1,4 +1,5 @@
 ﻿using Fixel.Data.Models;
+using Fixel.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,6 +13,8 @@ namespace Fixel.Data.Configurations
         {
             builder.Property(rt => rt.ReferenceNumber)
                 .HasColumnType($"char({ReferenceNumberLength})");
+
+            builder.HasData(RepairTicketSeedData.RepairTickets);
         }
     }
 }
