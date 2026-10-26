@@ -1,0 +1,5 @@
+﻿@using Fixel.ViewModels.Extensions
+@using Fixel.Web.Extensions
+@model Fixel.Data.Models.RepairStatus
+
+<span class="badge rounded-pill @Model.ToBadgeClass()">@Model.ToDisplayName()</span>

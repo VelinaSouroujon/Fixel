@@ -31,6 +31,7 @@ namespace Fixel.Core.Customers
                     LastName = c.LastName,
                     Email = c.Email,
                     PhoneNumber = c.PhoneNumber,
+                    DevicesCount = c.Devices.Count,
 
                     ActiveTicketsCount = c.Devices
                         .SelectMany(d => d.RepairTickets)
@@ -56,6 +57,7 @@ namespace Fixel.Core.Customers
                     Devices = c.Devices.Select(d => new CustomerDeviceViewModel
                     {
                         Id = d.Id,
+                        ManufacturerName = d.Model.Manufacturer.Name,
                         DeviceType = d.Model.DeviceType.TypeName,
                         DeviceModel = d.Model.Name,
                         SerialNumber = d.SerialNumber

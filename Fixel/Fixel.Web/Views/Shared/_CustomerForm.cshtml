@@ -1,0 +1,40 @@
+﻿@using Fixel.Data.Models
+@model Fixel.ViewModels.Customers.CustomerFormModel
+
+<div class="row g-3 mb-3">
+	<div class="col-sm-6">
+		<label asp-for="FirstName" class="form-label">First name</label>
+		<input asp-for="FirstName" class="form-control" autocomplete="given-name" />
+		<span asp-validation-for="FirstName" class="d-block mt-1 small text-danger"></span>
+	</div>
+	<div class="col-sm-6">
+		<label asp-for="LastName" class="form-label">Last name</label>
+		<input asp-for="LastName" class="form-control" autocomplete="family-name" />
+		<span asp-validation-for="LastName" class="d-block mt-1 small text-danger"></span>
+	</div>
+</div>
+
+<div class="mb-3">
+	<label asp-for="PhoneNumber" class="form-label">Phone number</label>
+	<input asp-for="PhoneNumber" type="tel" class="form-control" autocomplete="tel" />
+	<span asp-validation-for="PhoneNumber" class="d-block mt-1 small text-danger"></span>
+</div>
+
+<div class="mb-3">
+	<label asp-for="Email" class="form-label">Email <span class="fw-normal text-body-secondary">(optional)</span></label>
+	<input asp-for="Email" type="email" class="form-control" autocomplete="email" />
+	<span asp-validation-for="Email" class="d-block mt-1 small text-danger"></span>
+</div>
+
+<div class="mb-3">
+	<div class="form-label" id="contact-method-label">Preferred contact method</div>
+	<div class="btn-group" role="group" aria-labelledby="contact-method-label">
+		@foreach (var method in Enum.GetValues<ContactMethod>())
+		{
+			var id = $"contact-method-{method}";
+			<input asp-for="PreferredContactMethod" type="radio" value="@method" id="@id" class="btn-check" />
+			<label class="btn btn-outline-secondary" for="@id">@method</label>
+		}
+	</div>
+	<span asp-validation-for="PreferredContactMethod" class="d-block mt-1 small text-danger"></span>
+</div>

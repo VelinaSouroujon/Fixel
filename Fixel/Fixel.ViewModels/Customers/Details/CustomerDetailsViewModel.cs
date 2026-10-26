@@ -1,4 +1,6 @@
-﻿using Fixel.Data.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using Fixel.Data.Models;
+using Fixel.ViewModels.Constants;
 
 namespace Fixel.ViewModels.Customers.Details
 {
@@ -12,6 +14,7 @@ namespace Fixel.ViewModels.Customers.Details
 
         public string PhoneNumber { get; set; } = null!;
 
+        [DisplayFormat(NullDisplayText = DisplayFormats.Empty)]
         public string? Email { get; set; }
 
         public ContactMethod PreferredContactMethod { get; set; }
