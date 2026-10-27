@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 using static Fixel.Common.Constants.CustomerConstants;
 
-namespace Fixel.ViewModels.Customers
+namespace Fixel.ViewModels.Customers.Form
 {
     public class CustomerFormModel
     {

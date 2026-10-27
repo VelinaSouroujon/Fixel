@@ -1,5 +1,5 @@
-﻿using Fixel.ViewModels.Customers;
-using Fixel.ViewModels.Customers.Details;
+﻿using Fixel.ViewModels.Customers.Details;
+using Fixel.ViewModels.Customers.Form;
 using Fixel.ViewModels.Customers.Index;
 
 namespace Fixel.Core.Customers

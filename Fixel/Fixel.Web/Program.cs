@@ -1,5 +1,7 @@
 using EntityFramework.Exceptions.SqlServer;
 using Fixel.Core.Customers;
+using Fixel.Core.Devices;
+using Fixel.Core.RepairTickets;
 using Fixel.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +23,8 @@ namespace Fixel.Web
                     .UseExceptionProcessor();
             });
             builder.Services.AddScoped<ICustomerService, CustomerService>();
+            builder.Services.AddScoped<IRepairTicketService, RepairTicketService>();
+            builder.Services.AddScoped<IDeviceService, DeviceService>();
 
             var app = builder.Build();
 

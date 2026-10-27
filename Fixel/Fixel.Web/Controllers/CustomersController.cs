@@ -1,7 +1,7 @@
 ﻿using Fixel.Core.Customers;
 using Fixel.Core.Customers.Exceptions;
-using Fixel.ViewModels.Customers;
 using Fixel.ViewModels.Customers.Details;
+using Fixel.ViewModels.Customers.Form;
 using Fixel.ViewModels.Customers.Index;
 using Microsoft.AspNetCore.Mvc;
 
