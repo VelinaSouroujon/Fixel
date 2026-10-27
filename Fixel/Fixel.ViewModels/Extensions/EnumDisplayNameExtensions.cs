@@ -17,7 +17,8 @@ namespace Fixel.ViewModels.Extensions
             RepairStatus.Collected => "Collected",
             RepairStatus.Declined => "Declined",
             RepairStatus.Unrepairable => "Unrepairable",
-            RepairStatus.Cancelled => "Cancelled"
+            RepairStatus.Cancelled => "Cancelled",
+            _ => throw new ArgumentOutOfRangeException(nameof(status))
         };
     }
 }

@@ -15,7 +15,8 @@ namespace Fixel.Web.Extensions
             RepairStatus.Testing => "s-testing",
             RepairStatus.ReadyForCollection => "s-ready",
             RepairStatus.Collected => "s-collected",
-            RepairStatus.Declined or RepairStatus.Unrepairable or RepairStatus.Cancelled => "s-closed"
+            RepairStatus.Declined or RepairStatus.Unrepairable or RepairStatus.Cancelled => "s-closed",
+            _ => throw new ArgumentOutOfRangeException(nameof(status))
         };
     }
 }
