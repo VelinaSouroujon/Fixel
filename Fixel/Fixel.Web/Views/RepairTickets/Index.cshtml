@@ -1,5 +1,60 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Fixel.Web.Extensions
+@model IEnumerable<Fixel.ViewModels.RepairTickets.Index.TicketIndexViewModel>
+
 @{
+    ViewData["Title"] = "Repair tickets";
 }
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <h1 class="fs-3 fw-semibold mb-0">Repair tickets</h1>
+    <a class="btn btn-primary" asp-action="Create">New ticket</a>
+</div>
+
+<div class="card overflow-hidden">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">Reference</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Device</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Expected</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ticket in Model)
+                {
+                    <tr class="position-relative">
+                        <td>
+                            <a class="ref num fw-medium link-body-emphasis link-underline-opacity-0 link-underline-opacity-100-hover stretched-link"
+                               asp-action="Details" asp-route-id="@ticket.Id">@ticket.ReferenceNumber</a>
+                        </td>
+                        <td class="@(ticket.CustomerFirstName is null ? "text-secondary" : null)">
+	                        @Html.DisplayFor(modelItem => ticket.CustomerFirstName) @ticket.CustomerLastName
+                        </td>
+                        <td>@ticket.DeviceManufacturerName @ticket.DeviceModelName</td>
+                        <td><partial name="_StatusBadge" model="ticket.Status" /></td>
+                        <td><span class="dot @ticket.Priority.ToPriorityDotClass()"></span>@ticket.Priority</td>
+                        <td class="num @(ticket.ExpectedCompletionDate is null ? "text-secondary" : null)">
+                            @if (ticket.IsOverdue)
+                            {
+                                <span class="text-danger fw-medium">@Html.DisplayFor(modelItem => ticket.ExpectedCompletionDate)</span>
+                                <span class="badge bg-danger-subtle text-danger-emphasis ms-2">Overdue</span>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => ticket.ExpectedCompletionDate)
+                            }
+                        </td>
+                    </tr>
+                }
+                @if (!Model.Any())
+                {
+                    <tr><td colspan="6" class="text-body-secondary">No repair tickets found.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

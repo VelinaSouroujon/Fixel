@@ -1,5 +1,74 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Fixel.Data.Models
+@using Fixel.ViewModels.RepairTickets.Form
+@model TicketFormModel
+
 @{
+    ViewData["Title"] = "New ticket";
+}
+
+<div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
+    <h1 class="fs-3 fw-semibold mb-4">New repair ticket</h1>
+
+    <div class="card">
+        <div class="card-body p-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label asp-for="ReferenceNumber" class="form-label">Reference number</label>
+                        <input asp-for="ReferenceNumber" class="form-control" />
+                        <span asp-validation-for="ReferenceNumber" class="d-block mt-1 small text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Priority" class="form-label">Priority</label>
+                        <select asp-for="Priority" asp-items="Html.GetEnumSelectList<RepairPriority>()" class="form-select"></select>
+                        <span asp-validation-for="Priority" class="d-block mt-1 small text-danger"></span>
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="DeviceId" class="form-label">Device</label>
+                        <select asp-for="DeviceId" class="form-select">
+                            <option value="" selected disabled>Select a device</option>
+                            @foreach (var device in Model.Devices)
+                            {
+                                <option value="@device.Id">@device</option>
+                            }
+                        </select>
+                        <span asp-validation-for="DeviceId" class="d-block mt-1 small text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="ExpectedCompletionDate" class="form-label">
+                            Expected completion date <span class="fw-normal text-secondary">(optional)</span>
+                        </label>
+                        <input asp-for="ExpectedCompletionDate" type="date" class="form-control" />
+                        <span asp-validation-for="ExpectedCompletionDate" class="d-block mt-1 small text-danger"></span>
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="ConditionDescription" class="form-label">Condition at intake</label>
+                        <textarea asp-for="ConditionDescription" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="ConditionDescription" class="d-block mt-1 small text-danger"></span>
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="ReportedProblem" class="form-label">Reported problem</label>
+                        <textarea asp-for="ReportedProblem" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="ReportedProblem" class="d-block mt-1 small text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
+                    <button class="btn btn-primary" type="submit">Create ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

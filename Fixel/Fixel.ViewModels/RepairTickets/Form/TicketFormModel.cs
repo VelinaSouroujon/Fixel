@@ -26,11 +26,12 @@ namespace Fixel.ViewModels.RepairTickets.Form
         public string ReportedProblem { get; set; } = null!;
 
         [Required]
-        public RepairPriority Priority { get; set; }
+        public RepairPriority Priority { get; set; } = RepairPriority.Normal;
 
         public DateOnly? ExpectedCompletionDate { get; set; }
 
         public IEnumerable<TicketDeviceOptionViewModel> Devices { get; set; } = new List<TicketDeviceOptionViewModel>();
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             DateOnly todayDate = DateOnly.FromDateTime(DateTime.Today);

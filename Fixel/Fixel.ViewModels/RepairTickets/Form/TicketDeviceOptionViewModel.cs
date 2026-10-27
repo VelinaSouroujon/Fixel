@@ -13,5 +13,12 @@
         public string? CustomerFirstName { get; set; }
 
         public string? CustomerLastName { get; set; }
+
+        public override string ToString()
+        {
+            return CustomerFirstName is not null
+                ? $"{ManufacturerName} {ModelName} ({CustomerFirstName} {CustomerLastName})"
+                : $"{ManufacturerName} {ModelName}";
+        }
     }
 }

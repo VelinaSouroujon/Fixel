@@ -18,5 +18,14 @@ namespace Fixel.Web.Extensions
             RepairStatus.Declined or RepairStatus.Unrepairable or RepairStatus.Cancelled => "s-closed",
             _ => throw new ArgumentOutOfRangeException(nameof(status))
         };
+
+        public static string ToPriorityDotClass(this RepairPriority priority) => priority switch
+        {
+            RepairPriority.Low => "bg-secondary-subtle",
+            RepairPriority.Normal => "bg-primary",
+            RepairPriority.High => "bg-warning",
+            RepairPriority.Urgent => "bg-danger",
+            _ => throw new ArgumentOutOfRangeException(nameof(priority))
+        };
     }
 }

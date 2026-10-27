@@ -1,4 +1,6 @@
-﻿using Fixel.Data.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using Fixel.Data.Models;
+using Fixel.ViewModels.Constants;
 
 namespace Fixel.ViewModels.RepairTickets.Index
 {
@@ -8,6 +10,7 @@ namespace Fixel.ViewModels.RepairTickets.Index
 
         public string ReferenceNumber { get; set; } = null!;
 
+        [DisplayFormat(NullDisplayText = DisplayFormats.Empty)]
         public string? CustomerFirstName { get; set; }
 
         public string? CustomerLastName { get; set; }
@@ -20,6 +23,7 @@ namespace Fixel.ViewModels.RepairTickets.Index
 
         public RepairPriority Priority { get; set; }
 
+        [DisplayFormat(DataFormatString = DisplayFormats.Date, NullDisplayText = DisplayFormats.Empty)]
         public DateOnly? ExpectedCompletionDate { get; set; }
 
         public bool IsOverdue { get; set; }
