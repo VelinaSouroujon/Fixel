@@ -5,7 +5,7 @@ using static Fixel.Common.Constants.CustomerConstants;
 
 namespace Fixel.ViewModels.Customers.Form
 {
-    public class CustomerFormModel
+    public class CustomerFormModel : IValidatableObject
     {
         [Required]
         [MinLength(FirstNameMinLength)]
@@ -26,5 +26,15 @@ namespace Fixel.ViewModels.Customers.Form
 
         [Required]
         public ContactMethod PreferredContactMethod { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (Email is null && PreferredContactMethod == ContactMethod.Email)
+            {
+                yield return new ValidationResult(
+                    "You can choose email as preferred contact method only in case email address is provided",
+                    new[] { nameof(PreferredContactMethod) });
+            }
+        }
     }
 }

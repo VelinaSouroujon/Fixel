@@ -8,8 +8,8 @@ namespace Fixel.ViewModels.RepairTickets.Form
     public class TicketFormModel : IValidatableObject
     {
         [Required]
-        [MinLength(ReferenceNumberLength)]
-        [MaxLength(ReferenceNumberLength)]
+        [StringLength(ReferenceNumberLength, MinimumLength = ReferenceNumberLength, 
+            ErrorMessage = "Reference number must be exactly {1} characters long")]
         public string ReferenceNumber { get; set; } = null!;
 
         [Required]
