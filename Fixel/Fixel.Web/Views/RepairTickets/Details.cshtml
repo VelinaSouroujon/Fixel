@@ -1,5 +1,115 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Fixel.Web.Extensions
+@model Fixel.ViewModels.RepairTickets.Details.TicketDetailsViewModel
+
 @{
+    ViewData["Title"] = Model.ReferenceNumber;
 }
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div class="d-flex align-items-center gap-3">
+        <h1 class="fs-3 fw-semibold num mb-0">@Model.ReferenceNumber</h1>
+        <partial name="_StatusBadge" model="Model.Status" />
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="d-grid gap-4">
+            <section class="card">
+                <div class="card-body">
+                    <h2 class="fs-5 fw-semibold mb-3">Reported problem</h2>
+                    <p class="mb-0">@Model.ReportedProblem</p>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-body">
+                    <h2 class="fs-5 fw-semibold mb-3">Condition at intake</h2>
+                    <p class="mb-0">@Model.ConditionDescription</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="d-grid gap-4">
+            <aside class="card">
+                <div class="card-body">
+                    <h2 class="fs-5 fw-semibold mb-3">Ticket details</h2>
+                    <dl class="mb-0">
+                        <dt class="small fw-normal text-body-secondary">Priority</dt>
+                        <dd class="mb-3">
+                            <span class="dot @Model.Priority.ToPriorityDotClass()"></span>@Model.Priority
+                        </dd>
+
+                        <dt class="small fw-normal text-body-secondary">Intake date</dt>
+                        <dd class="mb-3 num">@Html.DisplayFor(model => model.IntakeDate)</dd>
+
+                        <dt class="small fw-normal text-body-secondary">Expected completion</dt>
+                        <dd class="mb-0 num @(Model.ExpectedCompletionDate is null ? "text-secondary" : null)">
+                            @if (Model.IsOverdue)
+                            {
+                                <span class="text-danger fw-medium">@Html.DisplayFor(model => model.ExpectedCompletionDate)</span>
+                                <span class="badge bg-danger-subtle text-danger-emphasis ms-2">Overdue</span>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.ExpectedCompletionDate)
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </aside>
+
+            <aside class="card">
+                <div class="card-body">
+                    <h2 class="fs-5 fw-semibold mb-3">Device</h2>
+                    <dl class="mb-0">
+                        <dt class="small fw-normal text-body-secondary">Model</dt>
+                        <dd class="mb-3 fw-medium">@Model.DeviceManufacturerName @Model.DeviceModelName</dd>
+
+                        <dt class="small fw-normal text-body-secondary">Type</dt>
+                        <dd class="mb-3">@Model.DeviceType</dd>
+
+                        <dt class="small fw-normal text-body-secondary">Serial number</dt>
+                        <dd class="mb-0 num">@Html.DisplayFor(model => model.DeviceSerialNumber)</dd>
+                    </dl>
+                </div>
+            </aside>
+
+            <aside class="card">
+                <div class="card-body">
+                    <h2 class="fs-5 fw-semibold mb-3">Customer</h2>
+                    <dl class="mb-0">
+                        <dt class="small fw-normal text-body-secondary">Name</dt>
+                        <dd class="mb-3">
+                            @if (Model.CustomerId is not null)
+                            {
+                                <a class="fw-medium link-body-emphasis link-underline-opacity-0 link-underline-opacity-100-hover"
+                                   asp-controller="Customers" asp-action="Details" asp-route-id="@Model.CustomerId">
+                                    @Model.CustomerFirstName @Model.CustomerLastName
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.CustomerFirstName)
+                            }
+                        </dd>
+
+                        <dt class="small fw-normal text-body-secondary">Phone</dt>
+                        <dd class="mb-0 num">
+                            @if (Model.CustomerPhoneNumber is not null)
+                            {
+                                <a href="tel:@Model.CustomerPhoneNumber">@Model.CustomerPhoneNumber</a>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.CustomerPhoneNumber)
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
