@@ -1,5 +1,6 @@
 using EntityFramework.Exceptions.SqlServer;
 using Fixel.Core.Customers;
+using Fixel.Core.DeviceModels;
 using Fixel.Core.Devices;
 using Fixel.Core.RepairTickets;
 using Fixel.Data;
@@ -13,7 +14,6 @@ namespace Fixel.Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
@@ -22,17 +22,17 @@ namespace Fixel.Web
                                          "Connection string 'DefaultConnection' not found"))
                     .UseExceptionProcessor();
             });
+
             builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<IRepairTicketService, RepairTicketService>();
             builder.Services.AddScoped<IDeviceService, DeviceService>();
+            builder.Services.AddScoped<IDeviceModelService, DeviceModelService>();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
