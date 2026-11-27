@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Fixel.Data.Models;
-
-using static Fixel.Common.Constants.RepairTicketConstants;
+using Fixel.ViewModels.Devices.Search;
+using static Fixel.Common.Constants.Validation.RepairTicketConstants;
 
 namespace Fixel.ViewModels.RepairTickets.Form
 {
@@ -30,7 +30,7 @@ namespace Fixel.ViewModels.RepairTickets.Form
 
         public DateOnly? ExpectedCompletionDate { get; set; }
 
-        public IEnumerable<TicketDeviceOptionViewModel> Devices { get; set; } = new List<TicketDeviceOptionViewModel>();
+        public IEnumerable<DeviceOptionViewModel> Devices { get; set; } = new List<DeviceOptionViewModel>();
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
