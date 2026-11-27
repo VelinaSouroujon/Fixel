@@ -5,7 +5,10 @@ using Fixel.Data.Models;
 using Fixel.ViewModels.Customers.Details;
 using Fixel.ViewModels.Customers.Form;
 using Fixel.ViewModels.Customers.Index;
+using Fixel.ViewModels.Customers.Search;
 using Microsoft.EntityFrameworkCore;
+
+using static Fixel.Common.Constants.ApplicationConstants;
 
 namespace Fixel.Core.Customers
 {
@@ -36,6 +39,35 @@ namespace Fixel.Core.Customers
                     ActiveTicketsCount = c.Devices
                         .SelectMany(d => d.RepairTickets)
                         .Count(rt => rt.Status != RepairStatus.Collected)
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<CustomerSearchResultViewModel>> SearchAsync(
+            string? searchQuery,
+            int count = DropdownSuggestionsDefaultLimit)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(count);
+            if (string.IsNullOrWhiteSpace(searchQuery))
+            {
+                return Enumerable.Empty<CustomerSearchResultViewModel>();
+            }
+
+            string trimmedQuery = searchQuery.Trim();
+
+            return await _context.Customers
+                .AsNoTracking()
+                .Where(c => (c.FirstName + " " + c.LastName).Contains(trimmedQuery) 
+                            || c.PhoneNumber.Contains(trimmedQuery))
+                .OrderBy(c => c.FirstName)
+                .ThenBy(c => c.LastName)
+                .Take(count)
+                .Select(c => new CustomerSearchResultViewModel
+                {
+                    Id = c.Id,
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    PhoneNumber = c.PhoneNumber,
                 })
                 .ToListAsync();
         }

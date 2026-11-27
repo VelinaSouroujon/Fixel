@@ -3,6 +3,7 @@ using Fixel.Core.Customers.Exceptions;
 using Fixel.ViewModels.Customers.Details;
 using Fixel.ViewModels.Customers.Form;
 using Fixel.ViewModels.Customers.Index;
+using Fixel.ViewModels.Customers.Search;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fixel.Web.Controllers
@@ -22,6 +23,15 @@ namespace Fixel.Web.Controllers
             IEnumerable<CustomerIndexViewModel> customers =  await _customerService.GetAllCustomersAsync();
 
             return View(customers);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> Search(string? searchQuery)
+        {
+            IEnumerable<CustomerSearchResultViewModel> matchingCustomers =
+                await _customerService.SearchAsync(searchQuery);
+
+            return Json(matchingCustomers);
         }
 
         [HttpGet]
