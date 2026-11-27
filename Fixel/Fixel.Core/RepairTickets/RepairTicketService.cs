@@ -11,7 +11,8 @@ namespace Fixel.Core.RepairTickets
 {
     public class RepairTicketService : IRepairTicketService
     {
-        private static readonly HashSet<RepairStatus> InactiveStatuses = new HashSet<RepairStatus>
+        private static readonly IReadOnlyCollection<RepairStatus> InactiveStatuses =
+            new HashSet<RepairStatus>
         {
             RepairStatus.Collected,
             RepairStatus.ReadyForCollection,
@@ -117,6 +118,11 @@ namespace Fixel.Core.RepairTickets
 
                 throw;
             }
+        }
+
+        public IReadOnlyCollection<RepairStatus> GetInactiveStatuses()
+        {
+            return InactiveStatuses;
         }
 
         public bool IsTicketOverdue(DateOnly? expectedCompletionDate, RepairStatus status)

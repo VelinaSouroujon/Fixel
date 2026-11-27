@@ -13,6 +13,8 @@ namespace Fixel.Core.RepairTickets
 
         Task CreateAsync(TicketFormModel model);
 
+        IReadOnlyCollection<RepairStatus> GetInactiveStatuses();
+
         bool IsTicketOverdue(DateOnly? expectedCompletionDate, RepairStatus status);
     }
 }
