@@ -1,0 +1,33 @@
+﻿@using Fixel.ViewModels.Devices.Form
+@model DeviceFormModel
+
+@{
+	ViewData["Title"] = "Add device";
+}
+
+<div class="row justify-content-center">
+	<div class="col-lg-7">
+		<h1 class="fs-3 fw-semibold mb-4">Add device</h1>
+
+		<div class="card">
+			<div class="card-body p-4">
+				<form method="post">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<partial name="_DeviceForm" model="Model" />
+
+					<div class="d-flex gap-3 mt-4">
+						<button type="submit" class="btn btn-primary">Add device</button>
+						<a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script type="module" src="~/js/customer-search.js"></script>
+	<script type="module" src="~/js/device-model-search.js"></script>
+}

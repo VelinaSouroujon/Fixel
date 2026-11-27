@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Fixel.ViewModels.Devices.Index.DeviceIndexViewModel>
+
+@{
+    ViewData["Title"] = "Devices";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <h1 class="fs-3 fw-semibold mb-0">Devices</h1>
+    <a class="btn btn-primary" asp-action="Create">Add device</a>
+</div>
+
+<div class="card overflow-hidden">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">Device</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Serial number</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col" class="text-end">Total repairs</th>
+                    <th scope="col" class="text-end">Active repairs</th>
+                    <th scope="col" class="text-end"><span class="visually-hidden">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var device in Model)
+                {
+                    <tr>
+                        <td>
+                            <a class="fw-medium link-body-emphasis link-underline-opacity-0 link-underline-opacity-100-hover"
+                               asp-action="Details" asp-route-id="@device.Id">@device.ManufacturerName @device.ModelName</a>
+                        </td>
+                        <td>@device.DeviceType</td>
+                        <td class="num @(device.SerialNumber is null ? "text-secondary" : null)">
+                            @Html.DisplayFor(modelItem => device.SerialNumber)
+                        </td>
+                        <td class="@(device.CustomerId is null ? "text-secondary" : null)">
+                            @if (device.CustomerId is not null)
+                            {
+                                <a class="link-body-emphasis link-underline-opacity-0 link-underline-opacity-100-hover"
+                                   asp-controller="Customers" asp-action="Details" asp-route-id="@device.CustomerId">
+                                    @device.CustomerFirstName @device.CustomerLastName
+                                </a>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => device.CustomerFirstName)
+                            }
+                        </td>
+                        <td class="text-end num">@device.TicketsCount</td>
+                        <td class="text-end num">@device.ActiveTicketsCount</td>
+                        <td class="text-end">
+                            <a asp-action="Update" asp-route-id="@device.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+                @if (!Model.Any())
+                {
+                    <tr><td colspan="7" class="text-body-secondary">No devices found.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

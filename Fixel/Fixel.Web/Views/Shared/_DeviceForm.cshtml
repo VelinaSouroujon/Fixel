@@ -1,0 +1,55 @@
+@using Fixel.ViewModels.DeviceModels.Search
+@using Fixel.ViewModels.Devices.Form
+@model DeviceFormModel
+
+@{
+    DeviceModelOptionViewModel? selectedModel =
+	    Model.DeviceModels.FirstOrDefault(m => m.Id == Model.DeviceModelId);
+}
+
+<div class="mb-3 position-relative">
+    <label for="customer-search-input" class="form-label">Owner</label>
+    <input type="hidden" asp-for="CustomerId" id="customer-id-input" />
+    <input type="search"
+           id="customer-search-input"
+           class="form-control"
+           placeholder="Search customer by name or phone..."
+           value="@Model.SelectedCustomer?.DisplayText"
+           data-search-url="@Url.Action("Search", "Customers")"
+           autocomplete="off" />
+
+    <ul id="customer-suggestions"
+        class="list-group position-absolute w-100 shadow-sm mt-1 overflow-y-auto d-none"
+        style="max-height: 240px; z-index: 1050;">
+    </ul>
+
+    <span asp-validation-for="CustomerId" class="d-block mt-1 small text-danger"></span>
+</div>
+
+<div class="mb-3 position-relative">
+    <label for="model-search-input" class="form-label">Device model</label>
+    <input type="hidden" asp-for="DeviceModelId" id="model-id-input" />
+    <input type="search"
+           id="model-search-input"
+           class="form-control"
+           placeholder="Search by brand, model, or type..."
+           value="@(selectedModel?.DisplayText)"
+           autocomplete="off" />
+
+    <ul id="model-suggestions"
+        class="list-group position-absolute w-100 shadow-sm mt-1 overflow-y-auto d-none"
+        style="max-height: 240px; z-index: 1050;"
+        data-suggestion-list='@Json.Serialize(Model.DeviceModels)'
+        data-dropdown-suggestions-limit="@Model.DropdownLimitDeviceModels">
+    </ul>
+
+    <span asp-validation-for="DeviceModelId" class="d-block mt-1 small text-danger"></span>
+</div>
+
+<div class="mb-3">
+	<label asp-for="SerialNumber" class="form-label">
+		Serial number <span class="fw-normal text-body-secondary">(optional)</span>
+	</label>
+	<input asp-for="SerialNumber" class="form-control num" autocomplete="off" />
+	<span asp-validation-for="SerialNumber" class="d-block mt-1 small text-danger"></span>
+</div>
