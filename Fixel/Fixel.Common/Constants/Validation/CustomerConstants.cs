@@ -1,4 +1,4 @@
-﻿namespace Fixel.Common.Constants
+﻿namespace Fixel.Common.Constants.Validation
 {
     public static class CustomerConstants
     {

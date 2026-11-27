@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using static Fixel.Common.Constants.DeviceConstants;
+using static Fixel.Common.Constants.Validation.DeviceConstants;
 
 namespace Fixel.Data.Models
 {

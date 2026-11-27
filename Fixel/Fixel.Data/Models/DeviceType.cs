@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using static Fixel.Common.Constants.DeviceTypeConstants;
+using static Fixel.Common.Constants.Validation.DeviceTypeConstants;
 
 namespace Fixel.Data.Models
 {

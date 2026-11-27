@@ -1,7 +1,7 @@
 ﻿using Fixel.Data.Models;
 using System.ComponentModel.DataAnnotations;
 
-using static Fixel.Common.Constants.CustomerConstants;
+using static Fixel.Common.Constants.Validation.CustomerConstants;
 
 namespace Fixel.ViewModels.Customers.Form
 {

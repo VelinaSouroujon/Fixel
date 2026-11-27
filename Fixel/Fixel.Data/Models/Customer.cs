@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using static Fixel.Common.Constants.CustomerConstants;
+using static Fixel.Common.Constants.Validation.CustomerConstants;
 
 namespace Fixel.Data.Models
 {

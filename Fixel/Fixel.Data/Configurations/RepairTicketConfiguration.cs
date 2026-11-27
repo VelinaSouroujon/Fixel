@@ -3,7 +3,7 @@ using Fixel.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using static Fixel.Common.Constants.RepairTicketConstants;
+using static Fixel.Common.Constants.Validation.RepairTicketConstants;
 
 namespace Fixel.Data.Configurations
 {
