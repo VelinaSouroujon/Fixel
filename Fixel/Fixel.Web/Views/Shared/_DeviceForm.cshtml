@@ -4,17 +4,30 @@
 
 @{
     DeviceModelOptionViewModel? selectedModel =
-	    Model.DeviceModels.FirstOrDefault(m => m.Id == Model.DeviceModelId);
+        Model.DeviceModels.FirstOrDefault(m => m.Id == Model.DeviceModelId);
 }
 
 <div class="mb-3 position-relative">
     <label for="customer-search-input" class="form-label">Owner</label>
     <input type="hidden" asp-for="CustomerId" id="customer-id-input" />
+
+    <div id="customer-selected-box"
+         class="form-control d-flex justify-content-between align-items-center gap-2 @(Model.SelectedCustomer is null ? "d-none" : null)">
+        <div class="d-flex align-items-baseline gap-2 overflow-hidden">
+            <span class="text-truncate fw-medium" id="customer-selected-primary">@Model.SelectedCustomer?.PrimaryText</span>
+            <span class="small text-body-secondary num text-nowrap" id="customer-selected-secondary">@Model.SelectedCustomer?.SecondaryText</span>
+        </div>
+        <button type="button"
+                class="btn-close small flex-shrink-0"
+                id="customer-clear-btn"
+                aria-label="Clear selected customer">
+        </button>
+    </div>
+
     <input type="search"
            id="customer-search-input"
-           class="form-control"
+           class="form-control @(Model.SelectedCustomer is not null ? "d-none" : null)"
            placeholder="Search customer by name or phone..."
-           value="@Model.SelectedCustomer?.DisplayText"
            data-search-url="@Url.Action("Search", "Customers")"
            autocomplete="off" />
 
@@ -29,11 +42,24 @@
 <div class="mb-3 position-relative">
     <label for="model-search-input" class="form-label">Device model</label>
     <input type="hidden" asp-for="DeviceModelId" id="model-id-input" />
+
+    <div id="model-selected-box"
+         class="form-control d-flex justify-content-between align-items-center gap-2 @(selectedModel is null ? "d-none" : null)">
+        <div class="d-flex align-items-baseline gap-2 overflow-hidden">
+            <span class="text-truncate fw-medium" id="model-selected-primary">@selectedModel?.PrimaryText</span>
+            <span class="small text-body-secondary text-nowrap" id="model-selected-secondary">@selectedModel?.SecondaryText</span>
+        </div>
+        <button type="button"
+                class="btn-close small flex-shrink-0"
+                id="model-clear-btn"
+                aria-label="Clear selected model">
+        </button>
+    </div>
+
     <input type="search"
            id="model-search-input"
-           class="form-control"
+           class="form-control @(selectedModel is not null ? "d-none" : null)"
            placeholder="Search by brand, model, or type..."
-           value="@(selectedModel?.DisplayText)"
            autocomplete="off" />
 
     <ul id="model-suggestions"
@@ -47,9 +73,9 @@
 </div>
 
 <div class="mb-3">
-	<label asp-for="SerialNumber" class="form-label">
-		Serial number <span class="fw-normal text-body-secondary">(optional)</span>
-	</label>
-	<input asp-for="SerialNumber" class="form-control num" autocomplete="off" />
-	<span asp-validation-for="SerialNumber" class="d-block mt-1 small text-danger"></span>
+    <label asp-for="SerialNumber" class="form-label">
+        Serial number <span class="fw-normal text-body-secondary">(optional)</span>
+    </label>
+    <input asp-for="SerialNumber" class="form-control num" autocomplete="off" />
+    <span asp-validation-for="SerialNumber" class="d-block mt-1 small text-danger"></span>
 </div>
